@@ -9,7 +9,7 @@
     body { font-family: "Helvetica Neue", Arial, sans-serif; line-height: 1.7; color: #333333; background-color: #f4f7f9; }
     
     .hero {
-      background-image: linear-gradient(rgba(0, 119, 182, 0.5), rgba(0, 180, 216, 0.5)), url(images/fuji.jpg);
+      background-image: linear-gradient(rgba(0, 119, 182, 0.5), rgba(0, 180, 216, 0.5)), url('images/fuji.jpg');
       background-size: cover; background-position: center;
       color: #ffffff; text-align: center; padding: 100px 20px;
     }
@@ -23,7 +23,7 @@
 
     .spots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 50px; }
     
-    /* कार्डलाई लिङ्क जस्तो बनाउने */
+    /* カード */
     .spot-card {
       background: #ffffff; border-radius: 12px; overflow: hidden;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); display: flex; flex-direction: column;
@@ -40,6 +40,211 @@
     .info-box h3 { font-size: 1.1rem; color: #0077b6; margin-bottom: 8px; }
     .info-list { list-style: none; font-size: 0.95rem; }
     .info-list li { margin-bottom: 6px; }
+
+    /* =====================================
+       参加者の声（感想セクション）スタイル
+       ===================================== */
+    .reviews-section {
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+
+    /* 年度切り替えタブ */
+    .year-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .year-tab-btn {
+      background: #ffffff;
+      border: 2px solid #0077b6;
+      color: #0077b6;
+      padding: 8px 24px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .year-tab-btn:hover,
+    .year-tab-btn.active {
+      background: #0077b6;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 119, 182, 0.25);
+    }
+
+    /* 学生一覧パネル */
+    .students-panel {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .students-panel.active {
+      display: grid;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 学生カード */
+    .student-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eef2f5;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .student-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.15);
+      border-color: #00b4d8;
+    }
+
+    .student-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #e8f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 12px;
+      border: 2px solid #caf0f8;
+    }
+
+    .student-course-badge {
+      display: inline-block;
+      background: #e8f4f8;
+      color: #0077b6;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 6px;
+    }
+
+    .student-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .click-hint {
+      font-size: 0.75rem;
+      color: #00b4d8;
+      font-weight: 600;
+      display: block;
+    }
+
+    /* =====================================
+       モーダルポップアップ スタイル
+       ===================================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #ffffff;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      animation: modalScale 0.25s ease;
+    }
+
+    @keyframes modalScale {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-avatar-big {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #e8f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 12px;
+      border: 3px solid #caf0f8;
+    }
+
+    .modal-course {
+      display: inline-block;
+      background: #e8f4f8;
+      color: #0077b6;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 12px;
+      margin-bottom: 6px;
+    }
+
+    .modal-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .modal-bubble {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 5px solid #0077b6;
+      border-radius: 8px;
+      padding: 18px;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 24px;
+    }
+
+    .modal-close-btn {
+      background: #0077b6;
+      color: #ffffff;
+      border: none;
+      padding: 10px 32px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #0096c7;
+    }
 
     footer { text-align: center; padding: 25px 20px; background: #1e293b; color: #94a3b8; font-size: 0.85rem; }
   </style>
@@ -64,26 +269,27 @@
       </ul>
     </section>
 
+    <!-- 見どころセクション -->
     <section>
       <h2 class="section-title">旅のハイライト・見どころ</h2>
       <p style="text-align: center; margin-bottom: 25px; color: #666;">※各スポットをクリックすると、詳細ページが開きます。</p>
       
       <div class="spots-grid">
 
-        <!-- スポット 1 (detail1.html खुल्ने) -->
+        <!-- スポット 1 -->
         <a href="detail1.html" class="spot-card">
           <span class="spot-tag">グルメ & ショッピング</span>
           <div class="spot-body">
             <img src="images/image1.jpg" alt="はとばキッチン" style="width:100%; height:160px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
             <h3 class="spot-title">エスパルスドリームプラザ「はとばキッチン」</h3>
             <p class="spot-text">
-           清水港のヨットハーバーを目の前に望む複合商業施設。大人気のビュッフェランチを堪能します。
-           <span style="display: block; text-align: right; margin-top: 8px;">Clickして詳細へ ➔</span>
-          </p>
+             清水港のヨットハーバーを目の前に望む複合商業施設。大人気のビュッフェランチを堪能します。
+             <span style="display: block; text-align: right; margin-top: 8px;">Clickして詳細へ ➔</span>
+            </p>
           </div>
         </a>
 
-        <!-- スポット 2 (detail2.html खुल्ने) -->
+        <!-- スポット 2 -->
         <a href="detail2.html" class="spot-card">
           <span class="spot-tag">絶景クルーズ</span>
           <div class="spot-body">
@@ -94,7 +300,7 @@
           </div>
         </a>
 
-        <!-- スポット 3 (detail3.html खुल्ने) -->
+        <!-- スポット 3 -->
         <a href="detail3.html" class="spot-card">
           <span class="spot-tag">世界文化遺産</span>
           <div class="spot-body">
@@ -105,7 +311,7 @@
           </div>
         </a>
 
-        <!-- スポット 4 (detail4.html खुल्ने) -->
+        <!-- スポット 4 -->
         <a href="detail4.html" class="spot-card">
           <span class="spot-tag">国宝・パワースポット</span>
           <div class="spot-body">
@@ -119,12 +325,137 @@
       </div>
     </section>
 
+    <!-- =====================================
+         参加者の声・年度別アーカイブ セクション
+         ===================================== -->
+    <section class="reviews-section">
+      <h2 class="section-title">参加者の思い出・感想</h2>
+      <p style="text-align: center; margin-bottom: 25px; color: #666;">気になる学生をクリックすると、感想を見ることができます。</p>
+
+      <!-- 年度タブ -->
+      <div class="year-tabs">
+        <button class="year-tab-btn active" onclick="switchYear('2025', this)">2025年度</button>
+        <button class="year-tab-btn" onclick="switchYear('2026', this)">2026年度</button>
+        <button class="year-tab-btn" onclick="switchYear('2027', this)">2027年度</button>
+      </div>
+
+      <!-- 2025年度 学生リスト -->
+      <div class="students-panel active" id="panel-2025">
+        <div class="student-card" onclick="openModal('Aさん', 'IT科 1年', '👨‍💻', '駿河湾クルーズからの富士山が本当に綺麗でした！普段教室ではあまり話せないクラスメイトともたくさん交流できて、絆が深まった良い研修旅行になりました。')">
+          <div class="student-avatar">👨‍💻</div>
+          <span class="student-course-badge">IT科 1年</span>
+          <h4 class="student-name">Aさん</h4>
+          <span class="click-hint">感想を見る ➔</span>
+        </div>
+
+        <div class="student-card" onclick="openModal('Bさん', 'パティシエ科 2年', '👩‍🍳', 'はとばキッチンのランチビュッフェが美味しくて大満足でした！久能山東照宮の歴史ある建築や彫刻にも触れられて、とても充実した1日になりました。')">
+          <div class="student-avatar">👩‍🍳</div>
+          <span class="student-course-badge">パティシエ科 2年</span>
+          <h4 class="student-name">Bさん</h4>
+          <span class="click-hint">感想を見る ➔</span>
+        </div>
+
+        <div class="student-card" onclick="openModal('Cさん', 'IT科 2年', '👩‍💻', '三保の松原の羽衣伝説をガイドの方から詳しく聞けて興味深かったです。秋晴れの中で気持ちよく散策でき、良いリフレッシュになりました。')">
+          <div class="student-avatar">👩‍💻</div>
+          <span class="student-course-badge">IT科 2年</span>
+          <h4 class="student-name">Cさん</h4>
+          <span class="click-hint">感想を見る ➔</span>
+        </div>
+      </div>
+
+      <!-- 2026年度 学生リスト -->
+      <div class="students-panel" id="panel-2026">
+        <div class="student-card" onclick="openModal('Dさん', 'パティシエ科 1年', '👨‍🍳', '大型バスでの移動中からみんなで盛り上がって楽しかったです！お土産コーナーで清水限定のお菓子をたくさん買えて大満足です。')">
+          <div class="student-avatar">👨‍🍳</div>
+          <span class="student-course-badge">パティシエ科 1年</span>
+          <h4 class="student-name">Dさん</h4>
+          <span class="click-hint">感想を見る ➔</span>
+        </div>
+
+        <div class="student-card" onclick="openModal('Eさん', 'IT科 1年', '👨‍💻', '船の上で受けた潮風が気持ちよかったです。歴史ある東照宮の石段は少し疲れましたが、登りきった場所からの眺めは圧巻でした！')">
+          <div class="student-avatar">👨‍💻</div>
+          <span class="student-course-badge">IT科 1年</span>
+          <h4 class="student-name">Eさん</h4>
+          <span class="click-hint">感想を見る ➔</span>
+        </div>
+      </div>
+
+      <!-- 2027年度 学生リスト -->
+      <div class="students-panel" id="panel-2027">
+        <div class="student-card" onclick="openModal('Fさん', 'IT科 2年', '👩‍💻', '天候にも恵まれ、船から富士山をバックにみんなで最高の記念写真を撮ることができました。卒業前の最高の思い出になりました！')">
+          <div class="student-avatar">👩‍💻</div>
+          <span class="student-course-badge">IT科 2年</span>
+          <h4 class="student-name">Fさん</h4>
+          <span class="click-hint">感想を見る ➔</span>
+        </div>
+
+        <div class="student-card" onclick="openModal('Gさん', 'パティシエ科 2年', '👩‍🍳', '海鮮料理はもちろん、地元のスイーツも味わえて大満足の一日でした。学科を越えて色々な人と話すきっかけになりました。')">
+          <div class="student-avatar">👩‍🍳</div>
+          <span class="student-course-badge">パティシエ科 2年</span>
+          <h4 class="student-name">Gさん</h4>
+          <span class="click-hint">感想を見る ➔</span>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- ポップアップモーダル本体 -->
+  <div class="modal-overlay" id="modal" onclick="closeModalOnBg(event)">
+    <div class="modal-window">
+      <div class="modal-avatar-big" id="modalAvatar">👨‍💻</div>
+      <span class="modal-course" id="modalCourse">学科・学年</span>
+      <h3 class="modal-name" id="modalName">学生氏名</h3>
+      <div class="modal-bubble">
+        <p id="modalComment">ここに感想が表示されます。</p>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal()">閉じる</button>
+    </div>
   </div>
 
   <footer>
     <p>※バス走行中は安全のため必ずシートベルトの着用をお願いいたします。</p>
     <p style="margin-top: 4px;">企画手配：株式会社 第一観光</p>
   </footer>
+
+  <!-- JavaScript制御コード -->
+  <script>
+    // 年度タブ切り替え関数
+    function switchYear(year, clickedBtn) {
+      // タブボタンのアクティブ状態を更新
+      document.querySelectorAll('.year-tab-btn').forEach(btn => btn.classList.remove('active'));
+      clickedBtn.classList.add('active');
+
+      // 表示する学生一覧パネルを切り替え
+      document.querySelectorAll('.students-panel').forEach(panel => panel.classList.remove('active'));
+      const targetPanel = document.getElementById('panel-' + year);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    }
+
+    // モーダルを開いて内容を挿入する関数
+    function openModal(name, course, avatar, comment) {
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalCourse').textContent = course;
+      document.getElementById('modalAvatar').textContent = avatar;
+      document.getElementById('modalComment').textContent = comment;
+      document.getElementById('modal').classList.add('active');
+    }
+
+    // モーダルを閉じる関数
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+
+    // モーダルの背景（黒い半透明部分）をクリックした時も閉じる
+    function closeModalOnBg(event) {
+      if (event.target.id === 'modal') {
+        closeModal();
+      }
+    }
+  </script>
 
 </body>
 </html>
